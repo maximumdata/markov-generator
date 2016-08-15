@@ -1,0 +1,26 @@
+{
+  "name": "markov-generator",
+  "version": "1.0.0",
+  "description": "Markov chain generator, using text.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maximumdata/markov-generator.git"
+  },
+  "keywords": [
+    "markov",
+    "markov",
+    "chains",
+    "markov",
+    "generator"
+  ],
+  "author": "Mike Dettmer <mike@mikedettmer.com> (https://mikedettmer.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maximumdata/markov-generator/issues"
+  },
+  "homepage": "https://github.com/maximumdata/markov-generator#readme"
+}
