@@ -6,6 +6,7 @@ A simple ES6 class for generating text using [Markov chains](https://en.wikipedi
 ## Quickstart
 ```javascript
 const MarkovGen = require('markov-generator');
+
 let markov = new MarkovGen({
   input: ['array of sentences', 'to base the chains on', 'should go here'],
   minLength: 10
