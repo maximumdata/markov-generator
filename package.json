@@ -1,6 +1,6 @@
 {
   "name": "markov-generator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Dependency-free Markov chain generator.",
   "main": "index.js",
   "scripts": {
