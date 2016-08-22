@@ -3,7 +3,7 @@
 
 A simple ES6 class for generating text using [Markov chains](https://en.wikipedia.org/wiki/Markov_chain). This should result in text that is similar in content and context to the supplied text sample, but (ideally) unique in concept.
 
-# Quickstart
+## Quickstart
 ```javascript
 const MarkovGen = require('markov-generator');
 let markov = new MarkovGen({
