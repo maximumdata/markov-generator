@@ -15,7 +15,7 @@ class Markov {
         this.terminals[words[words.length-1]] = 1;
       }
 
-      if(words[0].length && !this.startWords.includes(words[0])) { this.startWords.push(words[0]); }''
+      if(words[0].length && !this.startWords.includes(words[0])) { this.startWords.push(words[0]); };
 
       for( let j = 0, len = words.length - 1; j < len; j++ ) {
         if(this.wordStats.hasOwnProperty(words[j])) {
