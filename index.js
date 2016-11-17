@@ -2,31 +2,47 @@ class Markov {
   constructor (props) {
     this.props = props
     if (!this.props.input) {
-      return false
+      throw new Error('input was empty!')
     }
     this.terminals = {}
     this.startWords = []
     this.wordStats = {}
-    for (let i = 0, length = this.props.input.length; i < length; i++) {
-      let words = this.props.input[i].split(' ')
-      if (this.terminals[words[words.length - 1]]) {
-        this.terminals[words[words.length - 1]]++
+
+    this.props.input.forEach((e, i, a) => {
+      let words = e.split(' ')
+      let lastWord = words[words.length - 1]
+      let firstWord = words[0]
+
+      // if this.terminals contains the last word in this sentence, add to it's counter
+      // otherwise, create the property on this.terminals and set it to 1
+      if (this.terminals[lastWord]) {
+        this.terminals[lastWord]++
       } else {
-        this.terminals[words[words.length - 1]] = 1
+        this.terminals[lastWord] = 1
       }
 
-      if (words[0].length && !this.startWords.includes(words[0])) { this.startWords.push(words[0]) }
+      // if the first word is not a space, and if this.startWords does not already contain the first word, add it
+      if (firstWord.length && !this.startWords.includes(firstWord)) {
+        this.startWords.push(firstWord)
+      }
 
-      for (let j = 0, len = words.length - 1; j < len; j++) {
-        if (this.wordStats.hasOwnProperty(words[j])) {
-          this.wordStats[words[j]].push(words[j + 1])
-        } else {
-          this.wordStats[words[j]] = [words[j + 1]]
+      // loop through each word in current sentence
+      words.forEach((el, it, ar) => {
+        // if this.wordStats already contains the current word in the sentence as a property, push the next word in the sentence to it's array
+        // otherwise, create the property on this.startWords and set it to an array containing the next word in the sentence
+        // first check to see if there even IS a next word
+        if (ar[it + 1]) {
+          if (this.wordStats.hasOwnProperty(el)) {
+            this.wordStats[el].push(ar[it + 1])
+          } else {
+            this.wordStats[el] = [ar[it + 1]]
+          }
         }
-      }
-    }
+      })
+    })
+
     for (let word in this.terminals) {
-      if (this.terminals[word] < 4 || this.terminals[word] === '' || !this.terminals[word]) { delete this.terminals[word] }
+      if (this.terminals[word] === '' || !this.terminals[word]) { delete this.terminals[word] }
     }
     delete this.terminals['']
     delete this.wordStats['']
@@ -43,6 +59,7 @@ class Markov {
     if (!minLength) { minLength = 10 }
     let word = this.choice(this.startWords)
     let chain = [word]
+
     while (this.wordStats.hasOwnProperty(word)) {
       let nextWords = this.wordStats[word]
       word = this.choice(nextWords)
@@ -51,9 +68,14 @@ class Markov {
         break
       }
     }
-    if (chain.length < minLength) return this.makeChain(minLength)
+
+    if (this.props.input.includes(chain.join(' ')) || chain.length < minLength) {
+      return this.makeChain(minLength)
+    }
+
     return chain.join(' ')
   }
+
 }
 
 module.exports = Markov
