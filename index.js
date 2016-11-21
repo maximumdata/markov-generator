@@ -1,4 +1,9 @@
+/** Class representing a Markov Chain generator */
 class Markov {
+  /**
+   * Builds the generator
+   * @param {object} props - The configuration options and input data
+   */
   constructor (props) {
     this.props = props
     if (!this.props.input) {
@@ -48,10 +53,20 @@ class Markov {
     delete this.wordStats['']
   }
 
+  /**
+   * Choose a random element in a given array
+   * @param {array} a - An array to randomly choose an element from
+   * @return {string} The selected element of the array
+   */
   choice (a) {
     return a[Math.floor(a.length * Math.random())]
   }
 
+  /**
+   * Creates a new string via a Markov chain based on the input array from the constructor
+   * @param {number} minLength - The minimum number of words in the generated string
+   * @return {string} The generated string
+   */
   makeChain (minLength) {
     if (this.props.minLength && !minLength) {
       minLength = this.props.minLength

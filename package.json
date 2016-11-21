@@ -4,7 +4,8 @@
   "description": "Dependency-free Markov chain generator.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/standard/bin/cmd.js index.js"
+    "test": "./node_modules/standard/bin/cmd.js index.js",
+    "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,8 @@
   },
   "homepage": "https://github.com/maximumdata/markov-generator#readme",
   "devDependencies": {
+    "jsdoc": "^3.4.3",
+    "minami": "^1.1.1",
     "standard": "^8.0.0"
   }
 }
