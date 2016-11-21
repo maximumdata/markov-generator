@@ -17,3 +17,9 @@ let markov = new MarkovGen({
 let sentence = markov.makeChain();
 console.log(sentence);
 ```
+
+## Contributing
+Fork the repo, clone your form, commit changes to the `master` branch, then open a pull request. Node v6+ is required.
+
+## Docs
+Clone the repo, and in the root of the project, run `npm run generate-docs` then browse the generated html file in the `docs` folder.
