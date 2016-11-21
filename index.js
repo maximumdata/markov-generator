@@ -83,11 +83,12 @@ class Markov {
         break
       }
     }
-
-    if (this.props.input.includes(chain.join(' ')) || chain.length < minLength) {
+    if (this.props.input.includes(chain.join(' '))) {
       return this.makeChain(minLength)
     }
-
+    if (chain.length < minLength) {
+      return this.makeChain(minLength)
+    }
     return chain.join(' ')
   }
 

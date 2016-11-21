@@ -1,10 +1,10 @@
 {
   "name": "markov-generator",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Dependency-free Markov chain generator.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/standard/bin/cmd.js index.js",
+    "test": "./node_modules/.bin/mocha --reporter spec tests/test.js",
     "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
   "repository": {
@@ -25,8 +25,10 @@
   },
   "homepage": "https://github.com/maximumdata/markov-generator#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
     "jsdoc": "^3.4.3",
     "minami": "^1.1.1",
+    "mocha": "^3.1.2",
     "standard": "^8.0.0"
   }
 }
