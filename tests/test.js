@@ -2,7 +2,8 @@ let expect = require('chai').expect
 let MarkovGen = require('../index.js')
 
 describe('Markov Chain Generator', () => {
-  let testInput = ['Test sentence number 1', 'This is another test sentence', 'I\'m test sentence number two!', 'I can\'t believe that this is another test']
+  let testInput = ['Test sentence number 1', 'This is another test sentence', 'I\'m test sentence number two!', 'I can\'t believe that this is another test', 'TEST of insensitive']
+  // let testInput = ['This is a sample', 'THIS IS ALSO A SAMPLE', 'this Is yet ANOTHER sample']
 
   it('throws with no input', () => {
     let fn = () => {
