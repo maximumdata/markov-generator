@@ -3,7 +3,6 @@ let MarkovGen = require('../index.js')
 
 describe('Markov Chain Generator', () => {
   let testInput = ['Test sentence number 1', 'This is another test sentence', 'I\'m test sentence number two!', 'I can\'t believe that this is another test', 'TEST of insensitive']
-  // let testInput = ['This is a sample', 'THIS IS ALSO A SAMPLE', 'this Is yet ANOTHER sample']
 
   it('throws with no input', () => {
     let fn = () => {
@@ -27,5 +26,14 @@ describe('Markov Chain Generator', () => {
     }).makeChain()
     let minlenarr = minlenstr.split(' ')
     expect(minlenarr.length).to.be.at.least(3)
+  })
+
+  it('returns a string with proper letter casing', () => {
+    let testInput = ['Test seNtence', 'anothEr teSt sentenCe', 'A thIRd tEST seNtence']
+    let string = new MarkovGen({
+      input: testInput,
+      minLength: 2
+    }).makeChain()
+    expect(string).to.not.equal(string.toLowerCase())
   })
 })
