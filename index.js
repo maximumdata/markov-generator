@@ -80,11 +80,7 @@ class Markov {
    * @param {number} minLength - The minimum number of words in the generated string
    * @return {string} The generated string
    */
-  makeChain (minLength) {
-    if (this.props.minLength && !minLength) {
-      minLength = this.props.minLength
-    }
-    if (!minLength) { minLength = 10 }
+  makeChain (minLength = this.props.minLength || 10) {
     let word = this.choice(this.startWords)
     let chain = [word]
 
