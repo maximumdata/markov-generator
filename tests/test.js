@@ -28,6 +28,23 @@ describe('Markov Chain Generator', () => {
     expect(minlenarr.length).to.be.at.least(3)
   })
 
+  it('returns a string with a minimum amount of words set to a default value', () => {
+    let minlenstr = new MarkovGen({
+      input: testInput,
+    }).makeChain()
+    let minlenarr = minlenstr.split(' ')
+    expect(minlenarr.length).to.be.at.least(10)
+  })
+
+  it('returns a string with a minimum amount of words set to an override value', () => {
+    let minlenstr = new MarkovGen({
+      input: testInput,
+      minLength: 1
+    }).makeChain(5)
+    let minlenarr = minlenstr.split(' ')
+    expect(minlenarr.length).to.be.at.least(5)
+  })
+
   it('returns a string with proper letter casing', () => {
     let testInput = ['Test seNtence', 'anothEr teSt sentenCe', 'A thIRd tEST seNtence']
     let string = new MarkovGen({
