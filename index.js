@@ -12,6 +12,7 @@ class Markov {
     this.terminals = {}
     this.startWords = []
     this.wordStats = {}
+    this.bannedTerminals = (props.bannedTerminals && props.bannedTerminals.length) ? props.bannedTerminals.map(word => word.toLowerCase()) : [];
 
     this.props.input.forEach((e, i, a) => {
       let words = e.split(' ')
@@ -66,13 +67,17 @@ class Markov {
     delete this.wordStats['']
   }
 
+  isBannedTerminal(word) {
+    return this.bannedTerminals.includes(word.toLowerCase());
+  }
+
   /**
    * Choose a random element in a given array
    * @param {array} a - An array to randomly choose an element from
    * @return {string} The selected element of the array
    */
   choice (a) {
-    return a[Math.floor(a.length * Math.random())]
+    return a[Math.floor(a.length * Math.random())];
   }
 
   /**
@@ -81,24 +86,24 @@ class Markov {
    * @return {string} The generated string
    */
   makeChain (minLength = this.props.minLength || 10) {
-    let word = this.choice(this.startWords)
-    let chain = [word]
+    let word = this.choice(this.startWords);
+    let chain = [word];
 
     while (this.wordStats.hasOwnProperty(word.toLowerCase())) {
-      let nextWords = this.wordStats[word.toLowerCase()]
-      word = this.choice(nextWords)
-      chain.push(word)
-      if (chain.length > minLength && this.terminals.hasOwnProperty(word)) {
-        break
+      let nextWords = this.wordStats[word.toLowerCase()];
+      word = this.choice(nextWords);
+      chain.push(word);
+      if (chain.length > minLength && (this.terminals.hasOwnProperty(word) && !this.isBannedTerminal(word))) {
+        break;
       }
     }
     if (this.props.input.includes(chain.join(' '))) {
-      return this.makeChain(minLength)
+      return this.makeChain(minLength);
     }
     if (chain.length < minLength) {
-      return this.makeChain(minLength)
+      return this.makeChain(minLength);
     }
-    return chain.join(' ')
+    return chain.join(' ');
   }
 
 }
